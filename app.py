@@ -34,9 +34,11 @@ def main():
         # Make a prediction
         y_pred = model.predict(X)
 
+        result = 'Positive' if y_pred == 1 else 'Negative'
+
         return flask.render_template('main.html',
                                      input_text=user_input_text,
-                                     result=y_pred)
+                                     result=result)
 
 
 @app.route('/bootstrap/')
