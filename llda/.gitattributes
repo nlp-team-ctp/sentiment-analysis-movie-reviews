@@ -1,4 +1,0 @@
-llda/llda_model.pkl filter=lfs diff=lfs merge=lfs -text
-*.pkl filter=lfs diff=lfs merge=lfs -text
-llda_model.pkl filter=lfs diff=lfs merge=lfs -text
-MultiNB_model_89_accu.pkl filter=lfs diff=lfs merge=lfs -text
