@@ -9,43 +9,52 @@
 </head>
 
 <body>
-	<nav class="navbar navbar-light bg-light">
-		<span class="navbar-brand mb-0 h1">Sentiment Analysis of Movie Reviews</span>
-	</nav>
+
 
 
 	<div style="width: 1000px; margin:0 auto">
+		<div class="jumbotron">
+			<h1 style="font-family: monospace; text-align: center;" class="display-4">
+				Sentiment Analysis of Movie Reviews
+			</h1>
+			<form style="padding: 35px;" action="{{ url_for('main') }}" method="POST">
+				<div class="form-group">
+					<label for="exampleFormControlTextarea1">Please type your review:</label>
+					<textarea name="user_input_text" class="form-control" id="exampleFormControlTextarea1"
+						rows="15"></textarea>
+					<input class="btn btn-primary btn-lg btn-block" type="submit" value="Check Sentiment">
+				</div>
+			</form>
 
-		<form action="{{ url_for('main') }}" method="POST">
-			<div class="form-group">
-				<label for="exampleFormControlTextarea1">Please type your review:</label>
-				<textarea name="user_input_text" class="form-control" id="exampleFormControlTextarea1"
-					rows="10"></textarea>
-				<input class="btn btn-primary btn-lg btn-block" type="submit" value="Check Sentiment">
+			{% if input_text%}
+			<div style="padding: 20px;" class="card">
+				<div class="card-body">
+					{% if result %}
+					<div>
+						<h3><span class="badge badge-success">Positive</span></h3>
+						<h4>{{confidance}}%</span></h4>
+					</div>
+					{% else %}
+					<h3><span class="badge badge-danger">Negative</span></h3>
+					<h4>{{confidance}}%</span></h4>
+					{% endif %}
+					<p style="font-size:medium;" class="card-text">{{ input_text }}</p>
+				</div>
 			</div>
-
-		</form>
-
-		{% if input_text%}
-		<div class="card">
-			<div class="card-body">
-				{% if result %}
-				<h3><span class="badge badge-pill badge-success">Positive</span></h3>
-				{% else %}
-				<h3><span class="badge badge-pill badge-danger">Negative</span></h3>
-				{% endif %}
-				<p style="font-size:small" class="card-text">{{ input_text }}</p>
-			</div>
+			<p> </p>
+			{% endif %}
 		</div>
-		<p> </p>
-		{% endif %}
 
-		<div class="card-group">
+
+
+
+
+		<div style="padding: 35px;" class="card-group">
 			<div class="card" style="width: 20rem;">
 				<img class="card-img-top" src="../static/thegodfather.jpg" alt="Card image cap">
 				<div class="card-body">
 					<h5 class="card-title">The Godfather</h5>
-					<h4><span class="badge badge-pill badge-success">Positive</span></h4>
+					<h4><span class="badge badge-success">Positive</span></h4>
 					<p style="font-size:small" class="card-text">The Godfather came into this world, in the form of
 						Mario
 						Puzo's novel, as pulp. In
@@ -66,10 +75,10 @@
 			</div>
 
 			<div class="card" style="width: 20rem;">
-				<img class="card-img-top" src="../static/avengers.jpg" alt="Card image cap">
+				<img class="card-img-top" src="../static/avengers2.jpg" alt="Card image cap">
 				<div class="card-body">
 					<h5 class="card-title">Avengers: Endgame</h5>
-					<h4><span class="badge badge-pill badge-success">Positive</span></h4>
+					<h4><span class="badge badge-success">Positive</span></h4>
 					<p style="font-size:small" class="card-text">
 						Franchise logic dictates that, in its final instalment, at least some of the vanished
 						superheroes will return, but screenwriters Christopher Markus and Stephen McFeely are forced to
@@ -90,10 +99,10 @@
 			</div>
 
 			<div class="card" style="width: 20rem;">
-				<img class="card-img-top" src="../static/getout.jpg" alt="Card image cap">
+				<img class="card-img-top" src="../static/getout2.jpg" alt="Card image cap">
 				<div class="card-body">
 					<h5 class="card-title">Get Out</h5>
-					<h4><span class="badge badge-pill badge-success">Positive</span></h4>
+					<h4><span class="badge badge-success">Positive</span></h4>
 					<p style="font-size:small" class="card-text">
 						Rookie writer-director Jordan Peele laid the groundwork for his $4.5 million crossover movie by
 						producing, writing, and acting in multiple sketches on Comedy Central’s “Key & Peele” that found
@@ -113,12 +122,85 @@
 			</div>
 		</div>
 
+		<div style="padding: 35px;" class="card-group">
+			<div class="card" style="width: 20rem;">
+				<img class="card-img-top" src="../static/2001.jpg" alt="Card image cap">
+				<div class="card-body">
+					<h5 class="card-title">2001: A Space Odyssey</h5>
+					<h4><span class="badge badge-danger">Negative</span></h4>
+					<p style="font-size:small" class="card-text">
+						"2001: A Space Odyssey," at Loew's Capitol, is not a movie; it's an experience. To take it
+						simply as a movie will be to hate it because it is one that malfunctions. Stanley Kubrick begins
+						portentously with "The Dawn of Man," an endless study in ape survival. The apes awaken one
+						morning to discover a monolith or gigantic tuning fork looming inexplicably out of their
+						crater-hovel. Kubrick then drops the apes and flashes forward to the year 2001 smack into a
+						credibility gap insofar as the viewer is concerned. Kubrick leaves himself wide open to ridicule
+						from the minute he picks up Dr. Floyd's space investigation of the mysterious monolith. The
+						setting is a technical marvel, but advertising plugs make it a super-commercial and destroy its
+						impact. The soundtrack is a mishmash of pseudo-church electronic music and, incredibly, Strauss
+						waltzes. Imagine whirling through space to schmaltz in three-quarter time! Astronaut Gary
+						Lockwood insists upon examining and re-examining each facet of the craft and boring anyone but a
+						Nasa expert to death. Lockwood and mission commander Keir Dullea, who are beautifully bland as
+						they were meant to be, have nothing to do but roll around space all day. After the intermission,
+						the story finally moves into a twilight zone dimension. At long last something happens. Then
+						come the final 15 minutes or so that should have been the entire film. It becomes a trip. The
+						psychedelic effect of being hurtled via Cinerama through what looks like two neon-lit streets
+						compressed into a tube, through exploding blobs, over luminescent canyons, is stunning. A small
+						sphere of intellectuals will feel that Kubrick has said something, simply because one expected
+						him to say something. Others will be disappointed but will have to admire his technical grasp of
+						the subject. Most moviegoers will only wish that Mr. Kubrick would come back down to earth.
 
 
+					</p>
+				</div>
+			</div>
 
+			<div class="card" style="width: 20rem;">
+				<img class="card-img-top" src="../static/cars.jpg" alt="Card image cap">
+				<div class="card-body">
+					<h5 class="card-title">Cars</h5>
+					<h4><span class="badge badge-danger">Negative</span></h4>
+					<p style="font-size:small" class="card-text">
+						It had to end sometime. After a run of standard-setting CGI movies, Pixar has finally delivered
+						a dud. Cars is a marvel of technology, but underneath that shiny bonnet there is a serious
+						shortage of horsepower. The story, borrowed wholesale from Doc Hollywood, sees an arrogant
+						racing car, voiced by Owen Wilson, waylaid in a sleepy middle American town. There, he learns
+						valuable lessons about (yawn) the importance of community and teamwork. It's Capra with hubcaps.
+						The world of Cars is a freakish place, inhabited solely by automobiles (even the insects are
+						tiny trucks) and yet mysteriously devoid of pollution. The characters that make up Radiator
+						Springs, the tiny town where Wilson's Lightning McQueen is stranded, are broadly recognisable
+						types - a hippy camper van, a retired colonel represented by a Humvee, and so on. However, where
+						previous Pixar movies have made us care about toys, caterpillars and even fish, these
+						automobiles prove impossible to love. Devoid of limbs, they are just faces on wheels, and thus
+						rely heavily on the actors providing the voices. Wilson is OK, and Larry The Cable Guy (an
+						American stand-up comic, apparently) does a sweet turn as a rusty-brained tow-truck, but Bonnie
+						Hunt's love interest, a perky Porsche, leaves little impression. There's something icky about
+						the romance anyway. How do they, you know, make little cars? If they were at it, surely we'd see
+						the dents. "A SURPRISINGLY LAME AFFAIR" The script, usually Pixar's secret weapon, is a
+						surprisingly lame affair that substitutes endless automotive puns for real wit. The only bright
+						spot in the tedium is Paul Newman, on magisterial form as a retired racer with a dark secret.
+					</p>
+				</div>
+			</div>
+
+			<div class="card" style="width: 20rem;">
+				<img class="card-img-top" src="../static/jedi.jpg" alt="Card image cap">
+				<div class="card-body">
+					<h5 class="card-title">Star Wars: The Last Jedi</h5>
+					<h4><span class="badge badge-success">Positive</span></h4>
+					<p style="font-size:small" class="card-text">
+						In terms of directing, The Last Jedi shines. In terms of storytelling, it meshes together a lot
+						of elements that have so much potential, but that potential is left untapped.
+					</p>
+					<h4><span class="badge badge-danger">Negative</span></h4>
+					<p style="font-size:small" class="card-text">
+						"Star Wars" is not "Breaking Bad," and the same narrative tricks that worked for the latter feel
+						jarringly out of place in the former.
+					</p>
+				</div>
+			</div>
+		</div>
 	</div>
-
-
 </body>
 
 </html>

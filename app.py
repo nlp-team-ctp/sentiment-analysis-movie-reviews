@@ -47,12 +47,17 @@ def main():
 
         # Make a prediction
         y_pred = model.predict(X)
+        y_proba = model.predict_proba(X)
 
         result = True if y_pred == 1 else False
+        confidance = max(y_proba.item(0), y_proba.item(1))
+        confidance = round(confidance, 3) * 100
+        confidance_percent = "%.1f" % confidance
 
         return flask.render_template('main.html',
                                      input_text=user_input_text,
-                                     result=result)
+                                     result=result,
+                                     confidance=confidance_percent)
 
 
 @app.route('/bootstrap/')
