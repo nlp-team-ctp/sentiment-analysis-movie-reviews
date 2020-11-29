@@ -3,19 +3,33 @@ import os
 import pickle
 import pandas as pd
 import skimage
+from nltk.tokenize import RegexpTokenizer
 
 
 app = flask.Flask(__name__, template_folder='templates')
 
-path_to_sentiment_AMR = 'models/MultiNB_model_89_accu.pkl'
+path_to_model = 'models/MultiNB_model_90_accu.pkl'
 path_to_vectorizer = 'models/trigram_vectorizer.pkl'
 
 with open(path_to_vectorizer, 'rb') as f:
     vectorizer = pickle.load(f)
 
 
-with open(path_to_sentiment_AMR, 'rb') as f:
+with open(path_to_model, 'rb') as f:
     model = pickle.load(f)
+
+
+def preprocess(document):
+
+    # convert to lower case
+    document = document.lower()
+
+    # tokenize document
+    tk = RegexpTokenizer(r'[a-z\'\-\_]+')
+    tokens = [token for token in tk.tokenize(document)]
+    tokens = [token for token in tokens if token != 'br']
+
+    return ' '.join(tokens)
 
 
 @app.route('/', methods=['GET', 'POST'])
@@ -29,12 +43,12 @@ def main():
         user_input_text = flask.request.form['user_input_text']
 
         # Turn the text into numbers using our vectorizer
-        X = vectorizer.transform([user_input_text])
+        X = vectorizer.transform([preprocess(user_input_text)])
 
         # Make a prediction
         y_pred = model.predict(X)
 
-        result = 'Positive' if y_pred == 1 else 'Negative'
+        result = True if y_pred == 1 else False
 
         return flask.render_template('main.html',
                                      input_text=user_input_text,

@@ -9,25 +9,115 @@
 </head>
 
 <body>
-	<div style="width: 800px; margin:0 auto">
-		<h1>Sentiment Analysis of Movies Review</h1>
+	<nav class="navbar navbar-light bg-light">
+		<span class="navbar-brand mb-0 h1">Sentiment Analysis of Movie Reviews</span>
+	</nav>
+
+
+	<div style="width: 1000px; margin:0 auto">
+
 		<form action="{{ url_for('main') }}" method="POST">
-			<fieldset style="margin:0 auto">
-				<textarea name="user_input_text" rows="10" cols="75"></textarea>
-				<br><br>
-				<input type="submit">
-			</fieldset>
+			<div class="form-group">
+				<label for="exampleFormControlTextarea1">Please type your review:</label>
+				<textarea name="user_input_text" class="form-control" id="exampleFormControlTextarea1"
+					rows="10"></textarea>
+				<input class="btn btn-primary btn-lg btn-block" type="submit" value="Check Sentiment">
+			</div>
+
 		</form>
-	</div>
-	<div class="alert alert-success">
-		{% if input_text %}
-		<p>{{ input_text }} </p>
+
+		{% if input_text%}
+		<div class="card">
+			<div class="card-body">
+				{% if result %}
+				<h3><span class="badge badge-pill badge-success">Positive</span></h3>
+				{% else %}
+				<h3><span class="badge badge-pill badge-danger">Negative</span></h3>
+				{% endif %}
+				<p style="font-size:small" class="card-text">{{ input_text }}</p>
+			</div>
+		</div>
+		<p> </p>
 		{% endif %}
 
-		{% if result %}
-		<h4> {{ result }} </h4>
-		{% endif %}
+		<div class="card-group">
+			<div class="card" style="width: 20rem;">
+				<img class="card-img-top" src="../static/thegodfather.jpg" alt="Card image cap">
+				<div class="card-body">
+					<h5 class="card-title">The Godfather</h5>
+					<h4><span class="badge badge-pill badge-success">Positive</span></h4>
+					<p style="font-size:small" class="card-text">The Godfather came into this world, in the form of
+						Mario
+						Puzo's novel, as pulp. In
+						a feat of creative alchemy arguably unsurpassed before or since, Coppola and his collaborators
+						turned the Mafia melodrama into popular art that satisfies on every possible level -- as a
+						family
+						drama, a crime saga, a visual and musical ravishment and an impeccable evocation of a historical
+						period. Godfather is 42 years old, meaning anyone who saw it when it came out in 1972 is pushing
+						60
+						or older. This suggests its narrative power, extraordinary performances and mythic values
+						register
+						as strongly for younger viewers as they did at the time. The film also happens to stand at the
+						precise midpoint between the arrival of sound films and the present. It is both classical and
+						modern, traditional in its storytelling and contemporary in its critical perspective. It's a
+						film
+						that does it all.</p>
+				</div>
+			</div>
+
+			<div class="card" style="width: 20rem;">
+				<img class="card-img-top" src="../static/avengers.jpg" alt="Card image cap">
+				<div class="card-body">
+					<h5 class="card-title">Avengers: Endgame</h5>
+					<h4><span class="badge badge-pill badge-success">Positive</span></h4>
+					<p style="font-size:small" class="card-text">
+						Franchise logic dictates that, in its final instalment, at least some of the vanished
+						superheroes will return, but screenwriters Christopher Markus and Stephen McFeely are forced to
+						figure out how to pull this off without simply pressing a giant reset button. The opportunity to
+						rewrite history via a time machine (not a spoiler, but an inevitability) brings the gang back
+						together again for one last mission. En route, we get flashbacks to earlier outings (2012’s The
+						Avengers and 2013’s Thor: Dark World, for example); these bits are, quite transparently, for the
+						superfans, but on balance, the film is more satisfying than an assemblage of meme-able moments
+						designed to please the already initiated. The variables of human emotion and fallible judgment
+						are what drive the series; each character is haunted by their own, specific existential
+						quandary. Who is Captain America (Chris Evans), once his optimism has been worn down? What of
+						Tony Stark’s (Robert Downey Jr) cold logic now he is a father? Will Nebula’s (Karen Gillan)
+						inherent humanity override her tampered wiring? The final battle is giddily cathartic, but the
+						catharsis arises from prioritising character development over plot and spectacle. This, I
+						imagine, will be the Avengers’ legacy.
+					</p>
+				</div>
+			</div>
+
+			<div class="card" style="width: 20rem;">
+				<img class="card-img-top" src="../static/getout.jpg" alt="Card image cap">
+				<div class="card-body">
+					<h5 class="card-title">Get Out</h5>
+					<h4><span class="badge badge-pill badge-success">Positive</span></h4>
+					<p style="font-size:small" class="card-text">
+						Rookie writer-director Jordan Peele laid the groundwork for his $4.5 million crossover movie by
+						producing, writing, and acting in multiple sketches on Comedy Central’s “Key & Peele” that found
+						the humor in racism. Peele learned, over and over, how to creatively break beyond limitations
+						and play an audience. From the unsettling opening frames accompanied by a series of warning
+						music cues (“Run rabbit run!”), Peele seduces, subverts and manipulates audience expectations —
+						as the masters Alfred Hitchcock, John Carpenter, and Stanley Kubrick did before him. And he uses
+						camera moves to build dread. “Get Out” is both admonition and warning, but it’s also what Peele
+						wants the audience to scream at his frightened everyman hero (Daniel Kaluuya). The rule Peele
+						broke: every movie about race has to have one good white person. Credit producer Jason Blum (who
+						was nominated in 2015 for “Whiplash”) for making sure Peele rejiggered a more satisfying upbeat
+						ending, rather than send his beleaguered hero to jail. Finally, this timely racial thriller,
+						started during the Obama administration and completed in the age of Trump, landed Peele a win
+						for Best Original Screenplay.
+					</p>
+				</div>
+			</div>
+		</div>
+
+
+
+
 	</div>
+
 
 </body>
 
