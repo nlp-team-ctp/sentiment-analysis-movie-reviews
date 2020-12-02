@@ -11,7 +11,7 @@
 	<link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@700&display=swap" rel="stylesheet">
 </head>
 
-<body style="background-color: #ffffff; background-image: url('../static/bg2.jpg')">
+<body style="background-color: #ffffff; background-image: url('../static/bg2t1.jpg')">
 
 	<nav class="navbar navbar-expand-lg navbar-light bg-light" style="margin-bottom: 10px;">
 		<a class="navbar-brand" style="font-size:larger" href="/">NLP TEAM</a>
@@ -30,10 +30,10 @@
 
 	<div style="width: 1000px; margin:0 auto">
 		<div class="jumbotron" style="background-color: #ffeed2;">
-			<h1 style="font-family:  'Inconsolata', monospace; color: #c24f14; text-align: center;" class="display-4">
+			<h1 style="font-family:  'Inconsolata', monospace; color: #202020; text-align: center;" class="display-4">
 				SENTIMENT ANALYSIS
 			</h1>
-			<h2 style="font-family:  'Inconsolata', monospace; color: #c24f14; text-align: center;" class="display-4">
+			<h2 style="font-family:  'Inconsolata', monospace; color: #202020; text-align: center;" class="display-4">
 				OF MOVIE REVIEWS
 			</h2>
 			<form style="padding: 35px;" action="{{ url_for('main') }}" method="POST">
@@ -214,6 +214,35 @@
 				</div>
 			</div>
 		</div>
+
+		<div style="padding: 35px;" class="card-group">
+
+			<div class="card" style="width: 40rem;">
+				<img class="card-img-top" src="../static/confusion_matrix.png" alt="Card image cap">
+				<div class="card-body">
+				</div>
+
+			</div>
+
+			<div class="card" style="width: 40rem;">
+				<div class="card-body">
+
+					<p style="font-size:200px" class="card-text">
+						90%
+					</p>
+					<h4><span class="badge badge-success">true-negative: 4473</span></h4>
+					<h4><span class="badge badge-success">true-positive: 4460</span></h4>
+					<h4><span class="badge badge-danger">false-positive: 466</span></h4>
+					<h4><span class="badge badge-danger">false-negative: 518</span></h4>
+
+
+
+
+				</div>
+			</div>
+
+		</div>
+
 	</div>
 </body>
 
