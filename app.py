@@ -35,17 +35,13 @@ def preprocess(document):
 @app.route('/', methods=['GET', 'POST'])
 def main():
     if flask.request.method == 'GET':
-        # Just render the initial form, to get input
         return(flask.render_template('main.html'))
 
     if flask.request.method == 'POST':
-        # Get the input from the user.
         user_input_text = flask.request.form['user_input_text']
 
-        # Turn the text into numbers using our vectorizer
         X = vectorizer.transform([preprocess(user_input_text)])
 
-        # Make a prediction
         y_pred = model.predict(X)
         y_proba = model.predict_proba(X)
 
@@ -60,9 +56,9 @@ def main():
                                      confidance=confidance_percent)
 
 
-@app.route('/bootstrap/')
-def bootstrap():
-    return flask.render_template('bootstrap.html')
+@app.route('/moviescore/')
+def moviescore():
+    return flask.render_template('moviescore.html')
 
 
 if __name__ == '__main__':
